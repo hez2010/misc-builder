@@ -1,0 +1,25 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ test ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag builder:latest
+    - name: Docker Run Action
+      # You may pin to the exact commit or the version.
+      # uses: addnab/docker-run-action@4f65fabd2431ebc8d299f8e5a018d79a769ae185
+      uses: addnab/docker-run-action@v3
+      with:
+        # Image
+        image: builder:latest
+        # Run command in container
+        run: ./build/build-dotnet.sh
