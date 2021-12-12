@@ -19,7 +19,5 @@ jobs:
       # uses: addnab/docker-run-action@4f65fabd2431ebc8d299f8e5a018d79a769ae185
       uses: addnab/docker-run-action@v3
       with:
-        # Image
         image: builder:latest
-        # Run command in container
-        run: ./build/build-dotnet.sh
+        run: ./build-dotnet.sh v6.0.0 
